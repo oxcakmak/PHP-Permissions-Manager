@@ -37,3 +37,31 @@ try {
 }
 
 ```
+
+### permissions.txt
+```txt
+1|CREATE_ARTICLE
+2|READ_ARTICLE
+3|VIEW_ARTICLE
+4|UPDATE_ARTICLE
+5|LIST_ARTICLE
+```
+
+### Permissions Names (General)
+```txt
+ACCEPT
+BLOCK
+CREATE
+DELETE
+EXECUTE
+FILTER
+FIND
+GET
+LIST
+READ
+REJECT
+UNBLOCK
+UPDATE
+VIEW
+WRITE
+```
