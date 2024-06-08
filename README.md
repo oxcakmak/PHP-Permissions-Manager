@@ -29,12 +29,18 @@ try {
   if ($permissionInfo) {
     echo "Permission ID: " . $permissionInfo["id"] . "\n";
     echo "Permission Name: " . $permissionInfo["name"] . "\n";
+    // User Permission Control
+    // example $user['permissions'] = "1,2,3,4,5";
+    if( strpos($user['permissions'], $permissionInfo["id"]) === false ) return false;
+    
   } else {
     echo "Permission not found.";
   }
 } catch (Exception $e) {
   echo "Error: " . $e->getMessage();
 }
+
+
 
 ```
 
