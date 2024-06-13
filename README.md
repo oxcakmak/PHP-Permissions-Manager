@@ -12,7 +12,7 @@ Everyone's time should be valuable, so please consider donating.
 ### Installation
 
 ```php
-require_once 'PermissionManager.php';
+require_once 'Permissions.php';
 ```
 
 ### Usage
