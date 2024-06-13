@@ -17,36 +17,42 @@ require_once 'PermissionManager.php';
 
 ### Usage
 ```php
-/*
-* If you want load all permissions
-* print_r($permissionManager->loadPermissions());
-*/
-
 try {
-  $permissionManager = new PermissionManager("permissions.txt");
-  $permissionInfo = $permissionManager->getPermissionInfo("CREATE_ARTICLE");
+    // Create an instance of the Permission class with the path to the permissions file
+    $permissionManager = new Permission('permissions.txt');
 
-  if ($permissionInfo) {
-    echo "Permission ID: " . $permissionInfo["id"] . "\n";
-    echo "Permission Name: " . $permissionInfo["name"] . "\n";
-    // User Permission Control
-    // example $user['permissions'] = "1,2,3,4,5";
-    if( strpos($user['permissions'], $permissionInfo["id"]) === false ) return false;
+    // Get all permissions
+    $allPermissions = $permissionManager->getPermissions();
+    print_r($allPermissions);
+
+    // Get a specific permission by ID
+    $permissionById = $permissionManager->getPermissionById(1);
+    print_r($permissionById);
+
+    // Get a specific permission by name
+    $permissionByName = $permissionManager->getPermissionByName('THREAD_CREATE');
+    print_r($permissionByName);
+
+     // Example user's permissions as a comma-separated string of IDs
+    $userPermissions = "1,2,3";
+
+    // Check if the user has the "THREAD_CREATE" permission
+    $hasPermission = $permissionManager->check($userPermissions, 'THREAD_CREATE');
     
-  } else {
-    echo "Permission not found.";
-  }
+    if ($hasPermission) {
+        echo "User has the THREAD_CREATE permission.";
+    } else {
+        echo "User does not have the THREAD_CREATE permission.";
+    }
 } catch (Exception $e) {
-  echo "Error: " . $e->getMessage();
+    echo 'Error: ' . $e->getMessage();
 }
-
-
-
 ```
 
 ### permissions.txt
 ```txt
-1|CREATE_ARTICLE
+id|name|title|description
+1|CREATE_ARTICLE|Create Article|You can create article.
 2|READ_ARTICLE
 3|VIEW_ARTICLE
 4|UPDATE_ARTICLE
